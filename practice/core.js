@@ -26,7 +26,9 @@ onload = function() {
     curYubiX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
     curYubiY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
-    touchStart();
+    if (touchStart) {
+      touchStart();
+    }
   }, false);
 
   canvas.addEventListener('touchmove', (evt) => {
@@ -37,7 +39,9 @@ onload = function() {
     curYubiX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
     curYubiY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
-    touchMove();
+    if (touchMove) {
+      touchMove();
+    }
   }, false);
 
   canvas.addEventListener('touchend', (evt) => {
@@ -49,7 +53,9 @@ onload = function() {
     curYubiX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
     curYubiY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
-    touchEnd();
+    if (touchEnd) {
+      touchEnd();
+    }
   }, false);
 
   // PC用
@@ -60,7 +66,9 @@ onload = function() {
     curYubiX = (evt.clientX - rect.left) * bai;
     curYubiY = (evt.clientY - rect.top) * bai;
 
-    touchStart();
+    if (touchStart) {
+      touchStart();
+    }
   }, false);
 
   canvas.addEventListener('mousemove', (evt) => {
@@ -69,7 +77,9 @@ onload = function() {
     curYubiX = (evt.clientX - rect.left) * bai;
     curYubiY = (evt.clientY - rect.top) * bai;
 
-    touchMove();
+    if (touchMove) {
+      touchMove();
+    }
   }, false);
 
   canvas.addEventListener('mouseup', (evt) => {
@@ -79,10 +89,16 @@ onload = function() {
     curYubiX = (evt.clientX - rect.left) * bai;
     curYubiY = (evt.clientY - rect.top) * bai;
 
-    touchEnd();
+    if (touchEnd) {
+      touchEnd();
+    }
   }, false);
 
-  setup();
+  if (setup) {
+    setup();
+  }
 
-  const timerId = setInterval(loop, 33);
+  if (loop) {
+    setInterval(loop, 33);
+  }
 };
