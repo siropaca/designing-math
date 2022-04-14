@@ -1,6 +1,6 @@
 let canvas, ctx;
-let screenWidth, screenHeight;
-let curYubiX, curYubiY, yubiTouched;
+let windowWidth, windowHeight;
+let mouseX, mouseY, mouseTouched;
 
 onload = function() {
   canvas = document.getElementById('canvas');
@@ -10,21 +10,21 @@ onload = function() {
   }
 
   ctx = canvas.getContext('2d');
-  screenWidth = canvas.width;
-  screenHeight = canvas.height;
+  windowWidth = canvas.width;
+  windowHeight = canvas.height;
 
-  curYubiX = screenWidth / 2;
-  curYubiY = screenHeight / 2;
+  mouseX = windowWidth / 2;
+  mouseY = windowHeight / 2;
 
-  //スマホ用
+  // For mobile
   canvas.addEventListener('touchstart', (evt) => {
     evt.preventDefault();
 
     const rect = canvas.getBoundingClientRect();
-    const bai = screenWidth / rect.width;
-    yubiTouched = true;
-    curYubiX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
-    curYubiY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
+    const bai = windowWidth / rect.width;
+    mouseTouched = true;
+    mouseX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
+    mouseY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
     if (touchStart) {
       touchStart();
@@ -35,9 +35,9 @@ onload = function() {
     evt.preventDefault();
 
     const rect = canvas.getBoundingClientRect();
-    const bai = screenWidth / rect.width;
-    curYubiX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
-    curYubiY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
+    const bai = windowWidth / rect.width;
+    mouseX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
+    mouseY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
     if (touchMove) {
       touchMove();
@@ -48,23 +48,23 @@ onload = function() {
     evt.preventDefault();
 
     const rect = canvas.getBoundingClientRect();
-    const bai = screenWidth / rect.width;
-    yubiTouched = false;
-    curYubiX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
-    curYubiY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
+    const bai = windowWidth / rect.width;
+    mouseTouched = false;
+    mouseX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
+    mouseY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
     if (touchEnd) {
       touchEnd();
     }
   }, false);
 
-  // PC用
+  // For pc
   canvas.addEventListener('mousedown', (evt) => {
     const rect = canvas.getBoundingClientRect();
-    yubiTouched = true;
-    const bai = screenWidth / rect.width;
-    curYubiX = (evt.clientX - rect.left) * bai;
-    curYubiY = (evt.clientY - rect.top) * bai;
+    mouseTouched = true;
+    const bai = windowWidth / rect.width;
+    mouseX = (evt.clientX - rect.left) * bai;
+    mouseY = (evt.clientY - rect.top) * bai;
 
     if (touchStart) {
       touchStart();
@@ -73,9 +73,9 @@ onload = function() {
 
   canvas.addEventListener('mousemove', (evt) => {
     const rect = canvas.getBoundingClientRect();
-    const bai = screenWidth / rect.width;
-    curYubiX = (evt.clientX - rect.left) * bai;
-    curYubiY = (evt.clientY - rect.top) * bai;
+    const bai = windowWidth / rect.width;
+    mouseX = (evt.clientX - rect.left) * bai;
+    mouseY = (evt.clientY - rect.top) * bai;
 
     if (touchMove) {
       touchMove();
@@ -84,10 +84,10 @@ onload = function() {
 
   canvas.addEventListener('mouseup', (evt) => {
     const rect = canvas.getBoundingClientRect();
-    yubiTouched = false;
-    const bai = screenWidth / rect.width;
-    curYubiX = (evt.clientX - rect.left) * bai;
-    curYubiY = (evt.clientY - rect.top) * bai;
+    mouseTouched = false;
+    const bai = windowWidth / rect.width;
+    mouseX = (evt.clientX - rect.left) * bai;
+    mouseY = (evt.clientY - rect.top) * bai;
 
     if (touchEnd) {
       touchEnd();
