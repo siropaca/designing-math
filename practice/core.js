@@ -17,41 +17,41 @@ onload = function() {
   mouseY = windowHeight / 2;
 
   // For mobile
-  canvas.addEventListener('touchstart', (evt) => {
-    evt.preventDefault();
+  canvas.addEventListener('touchstart', (event) => {
+    event.preventDefault();
 
     const rect = canvas.getBoundingClientRect();
     const bai = windowWidth / rect.width;
     mouseTouched = true;
-    mouseX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
-    mouseY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
+    mouseX = (event.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
+    mouseY = (event.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
     if (touchStart) {
       touchStart();
     }
   }, false);
 
-  canvas.addEventListener('touchmove', (evt) => {
-    evt.preventDefault();
+  canvas.addEventListener('touchmove', (event) => {
+    event.preventDefault();
 
     const rect = canvas.getBoundingClientRect();
     const bai = windowWidth / rect.width;
-    mouseX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
-    mouseY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
+    mouseX = (event.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
+    mouseY = (event.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
     if (touchMove) {
       touchMove();
     }
   }, false);
 
-  canvas.addEventListener('touchend', (evt) => {
-    evt.preventDefault();
+  canvas.addEventListener('touchend', (event) => {
+    event.preventDefault();
 
     const rect = canvas.getBoundingClientRect();
     const bai = windowWidth / rect.width;
     mouseTouched = false;
-    mouseX = (evt.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
-    mouseY = (evt.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
+    mouseX = (event.changedTouches[0].pageX - (rect.left + window.pageXOffset)) * bai;
+    mouseY = (event.changedTouches[0].pageY - (rect.top + window.pageYOffset)) * bai;
 
     if (touchEnd) {
       touchEnd();
@@ -59,35 +59,35 @@ onload = function() {
   }, false);
 
   // For pc
-  canvas.addEventListener('mousedown', (evt) => {
+  canvas.addEventListener('mousedown', (event) => {
     const rect = canvas.getBoundingClientRect();
     mouseTouched = true;
     const bai = windowWidth / rect.width;
-    mouseX = (evt.clientX - rect.left) * bai;
-    mouseY = (evt.clientY - rect.top) * bai;
+    mouseX = (event.clientX - rect.left) * bai;
+    mouseY = (event.clientY - rect.top) * bai;
 
     if (touchStart) {
       touchStart();
     }
   }, false);
 
-  canvas.addEventListener('mousemove', (evt) => {
+  canvas.addEventListener('mousemove', (event) => {
     const rect = canvas.getBoundingClientRect();
     const bai = windowWidth / rect.width;
-    mouseX = (evt.clientX - rect.left) * bai;
-    mouseY = (evt.clientY - rect.top) * bai;
+    mouseX = (event.clientX - rect.left) * bai;
+    mouseY = (event.clientY - rect.top) * bai;
 
     if (touchMove) {
       touchMove();
     }
   }, false);
 
-  canvas.addEventListener('mouseup', (evt) => {
+  canvas.addEventListener('mouseup', (event) => {
     const rect = canvas.getBoundingClientRect();
     mouseTouched = false;
     const bai = windowWidth / rect.width;
-    mouseX = (evt.clientX - rect.left) * bai;
-    mouseY = (evt.clientY - rect.top) * bai;
+    mouseX = (event.clientX - rect.left) * bai;
+    mouseY = (event.clientY - rect.top) * bai;
 
     if (touchEnd) {
       touchEnd();
